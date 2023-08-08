@@ -7,7 +7,6 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
-import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
@@ -26,7 +25,7 @@ public class NewOrderMain {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var producer = new KafkaProducer<String, String>(properties());//Criando o produtor e definindo propriedades
 
-        for(var i = 0; i<100; i++) {
+        for(var i = 0; i<10; i++) {
 
             var key = UUID.randomUUID().toString();
             var value = key + ",123456,1234";//Mensagem que será enviada no tópico
