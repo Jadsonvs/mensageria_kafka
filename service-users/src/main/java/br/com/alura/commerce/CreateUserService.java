@@ -44,6 +44,7 @@ public class CreateUserService {
             insertNewUser(order.getEmail());
         }
     }
+
     //Inserindo valores nos atributos da tabela do banco
     private void insertNewUser(String email) throws SQLException {
         var insert = connection.prepareStatement("insert into Users (uuid, email) " +

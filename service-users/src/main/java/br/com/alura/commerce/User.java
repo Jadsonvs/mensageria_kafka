@@ -8,10 +8,6 @@ public class User {
         this.uuid = uuid;
     }
 
-    public String getReportPath() {
-        return "target/" + uuid + "-report.txt";
-    }
-
     public String getUuid() {
         return uuid;
     }
