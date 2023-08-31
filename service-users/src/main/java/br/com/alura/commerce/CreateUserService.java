@@ -1,6 +1,7 @@
 package br.com.alura.commerce;
 
 import br.com.alura.ecommerce.KafkaService;
+import br.com.alura.ecommerce.Message;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import java.sql.Connection;
@@ -35,11 +36,11 @@ public class CreateUserService {
             service.run();
         }
     }
-    private void parse(ConsumerRecord<String, Order> record) throws SQLException {
+    private void parse(ConsumerRecord<String, Message<Order>> record) throws SQLException {
         System.out.println("------------------------------------------");
         System.out.println("Processing new order, checking for new user");
         System.out.println(record.value());
-        var order = record.value();
+        var order = record.value().getPayload();
         if(isNewEmail(order.getEmail())) {
             insertNewUser(order.getEmail());
         }

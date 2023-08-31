@@ -11,6 +11,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 public class KafkaDispatcher<T> implements Closeable {
     private final KafkaProducer<String, Message<T>> producer;
+
     public KafkaDispatcher() {
         this.producer = new KafkaProducer<>(properties());
     }
@@ -24,8 +25,8 @@ public class KafkaDispatcher<T> implements Closeable {
         properties.setProperty(ProducerConfig.ACKS_CONFIG, "all");
         return properties;
     }
-    public void send(String topic, String key, T payload) throws ExecutionException, InterruptedException {
-        var value = new Message<>(new CorrelationId(), payload);
+    public void send(String topic, String key,CorrelationId id, T payload) throws ExecutionException, InterruptedException {
+        var value = new Message<>(id, payload);
         var record = new ProducerRecord<>(topic, key, value);//Configurando o que será gravado no kafka
         Callback callback = (data, ex) -> {
             if (ex != null) {

@@ -1,5 +1,6 @@
 package br.com.alura.commerce;
 
+import br.com.alura.ecommerce.CorrelationId;
 import br.com.alura.ecommerce.KafkaDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -30,10 +31,14 @@ public class NewOrderServelt extends HttpServlet {
             var orderId = UUID.randomUUID().toString();
 
             var order = new Order(orderId, amount, email);
-            orderDispatcher.send("ECOMMERCE_NEW_ORDER", email, order);
+            orderDispatcher.send("ECOMMERCE_NEW_ORDER", email,
+                    new CorrelationId(NewOrderServelt.class.getSimpleName()),
+                    order);
 
             var emailCode = "Thank you for your order! We are processing your order!";
-            emailDispatcher.send("ECOMMERCE_SEND_EMAIL", email, emailCode);
+            emailDispatcher.send("ECOMMERCE_SEND_EMAIL", email,
+                    new CorrelationId(NewOrderServelt.class.getSimpleName()),
+                    emailCode);
 
             System.out.println("New order sent successfully.");
             resp.setStatus(HttpServletResponse.SC_ACCEPTED);
