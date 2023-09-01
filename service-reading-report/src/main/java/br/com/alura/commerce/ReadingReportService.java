@@ -16,7 +16,6 @@ public class ReadingReportService {
                 ReadingReportService.class.getSimpleName(),
                 "ECOMMERCE_USER_GENERATE_READING_REPORT",
                 reportService::parse,
-                User.class,
                 Map.of()
         )) {
             service.run();

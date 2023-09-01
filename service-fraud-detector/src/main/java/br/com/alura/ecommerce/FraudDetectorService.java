@@ -13,7 +13,6 @@ public class FraudDetectorService {
                 FraudDetectorService.class.getSimpleName(),
                 "ECOMMERCE_NEW_ORDER",
                 fraudService::parse,
-                Order.class,
                 Map.of()
         )) {
             service.run();
