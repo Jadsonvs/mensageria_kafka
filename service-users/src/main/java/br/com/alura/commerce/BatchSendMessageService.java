@@ -1,8 +1,7 @@
 package br.com.alura.commerce;
 
-import br.com.alura.ecommerce.CorrelationId;
-import br.com.alura.ecommerce.KafkaDispatcher;
-import br.com.alura.ecommerce.KafkaService;
+import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
+import br.com.alura.ecommerce.consumer.KafkaService;
 import br.com.alura.ecommerce.Message;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
