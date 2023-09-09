@@ -12,8 +12,7 @@ public class CreateUserService implements ConsumerService<Order> {
     private final LocalDatabase database;
     CreateUserService() throws SQLException {
         this.database = new LocalDatabase("users_database");
-        this.database.createIfNotExists(
-                "create table Users (" +
+        this.database.createIfNotExists("create table Users (" +
                 "uuid varchar(200) primary key," +
                "email varchar(200))");
     }
@@ -33,7 +32,7 @@ public class CreateUserService implements ConsumerService<Order> {
         System.out.println("Processing new order, checking for new user");
         System.out.println(record.value());
         var order = record.value().getPayload();
-        if(isNewEmail(order.getEmail())) {
+        if(isNewUser(order.getEmail())) {
             insertNewUser(order.getEmail());
         }
     }
@@ -43,9 +42,10 @@ public class CreateUserService implements ConsumerService<Order> {
         var uuid = UUID.randomUUID().toString();
         database.update("insert into Users (uuid, email) " +
                 "values (?,?)", uuid, email);
+        System.out.println("Usuário " + uuid + " e " + email + " adicionado");
     }
     //Verificando se usuário existe dentro do banco com uma consulta
-    private boolean isNewEmail(String email) throws SQLException {
+    private boolean isNewUser(String email) throws SQLException {
        var results = database.query("select uuid from Users where email = ? limit 1", email);
         return !results.next();
     }

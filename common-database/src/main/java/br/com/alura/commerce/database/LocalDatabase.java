@@ -20,9 +20,6 @@ public class LocalDatabase {
             ex.printStackTrace();
         }
     }
-    public void update(String statement, String ... params) throws SQLException {
-        prepare(statement, params).execute();
-    }
     private PreparedStatement prepare(String statement, String[] params) throws SQLException {
         var preparedStatement = connection.prepareStatement(statement);
         for(int i = 0; i < params.length; i++) {
@@ -30,7 +27,15 @@ public class LocalDatabase {
         }
         return preparedStatement;
     }
-    public ResultSet query(String query, String ... params) throws SQLException {
+    public void update(String statement, String... params) throws SQLException {
+        prepare(statement, params).execute();
+    }
+
+    public ResultSet query(String query, String... params) throws SQLException {
         return prepare(query, params).executeQuery();
+    }
+
+    public void close() throws SQLException {
+        connection.close();
     }
 }
