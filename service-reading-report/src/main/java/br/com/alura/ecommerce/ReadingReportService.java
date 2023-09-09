@@ -1,16 +1,13 @@
-package br.com.alura.commerce;
+package br.com.alura.ecommerce;
 
 import br.com.alura.ecommerce.consumer.ConsumerService;
-import br.com.alura.ecommerce.consumer.KafkaService;
-import br.com.alura.ecommerce.Message;
 import br.com.alura.ecommerce.consumer.ServiceRunner;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
+
 public class ReadingReportService implements ConsumerService<User> {
    private static final Path SOURCE =   new File("src/main/resources/report.txt").toPath();
     public static void main(String[] args) {

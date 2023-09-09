@@ -1,4 +1,4 @@
-package br.com.alura.commerce;
+package br.com.alura.ecommerce;
 
 public class User {
 

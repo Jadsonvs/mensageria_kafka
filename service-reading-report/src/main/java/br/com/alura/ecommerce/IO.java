@@ -1,4 +1,4 @@
-package br.com.alura.commerce;
+package br.com.alura.ecommerce;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,8 +1,7 @@
-package br.com.alura.commerce;
+package br.com.alura.ecommerce;
 
 import br.com.alura.ecommerce.dispatcher.KafkaDispatcher;
 import br.com.alura.ecommerce.consumer.KafkaService;
-import br.com.alura.ecommerce.Message;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import java.sql.Connection;

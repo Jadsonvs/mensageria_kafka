@@ -1,4 +1,4 @@
-package br.com.alura.commerce;
+package br.com.alura.ecommerce;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -10,7 +10,7 @@ public class HttpEcommerceService {
 
         var context = new ServletContextHandler();
         context.setContextPath("/");
-        context.addServlet(new ServletHolder(new NewOrderServelt()), "/new");
+        context.addServlet(new ServletHolder(new NewOrderServelet()), "/new");
         context.addServlet(new ServletHolder(new GenerateAllReportsServlet()), "/admin/generate-reports");
 
         server.setHandler(context);
